@@ -1,310 +1,383 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="dark">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rifqy Maulana - Bio Link</title>
-    <!-- Ikon dari Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Font dari Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Formulir & Tampilan Testimoni</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
     <style>
-        /* --- START OF MODERN STYLES (Adapted from your file) --- */
-
+        /* Variabel Warna untuk kemudahan modifikasi */
         :root {
-            /* Dark Theme Colors (Default) */
-            --bg-primary: #0D1117;
-            --bg-secondary-animated: #161B22;
-            --bg-card: rgba(22, 27, 34, 0.65); /* Slightly more transparent for bio link */
-            --border-color: rgba(240, 246, 252, 0.1);
-            --text-primary: #F0F6FC;
-            --text-secondary: #8B949E;
-            --accent-glow: rgba(59, 130, 246, 0.4); /* Blue glow as requested */
-            --accent-color: #3B82F6;
-
-            /* Universal Values */
-            --radius-lg: 16px;
-            --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --primary-green: #2ecc71;
+            --dark-green: #27ae60;
+            --light-gray: #f7f9fc;
+            --dark-gray: #34495e;
+            --text-color: #555;
+            --border-color: #ecf0f1;
+            --shadow-color: rgba(0, 0, 0, 0.08);
         }
 
+        /* Reset dan Pengaturan Dasar */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
+            background-color: var(--light-gray);
+            color: var(--text-color);
             line-height: 1.6;
-            overflow-x: hidden;
-            cursor: none; /* Hide default cursor for desktop */
-            
-            /* Animated Gradient Background */
-            background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary-animated), var(--accent-color));
-            background-size: 400% 400%;
-            animation: subtleGradient 20s ease infinite;
-
-            /* Center content */
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             min-height: 100vh;
-            padding: 40px 20px;
-        }
-
-        @keyframes subtleGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        /* === INTERACTIVE BACKGROUND & CURSOR (Desktop Only) === */
-        #interactive-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), var(--accent-glow), transparent 80%);
-            z-index: -1;
-            pointer-events: none;
-            transition: background 0.2s ease-out;
-        }
-
-        .cursor {
-            position: fixed;
-            z-index: 9999;
-            pointer-events: none;
-            border-radius: 50%;
-            transition: transform 0.2s, width 0.3s, height 0.3s, opacity 0.3s, background-color 0.3s;
-            transform: translate(-50%, -50%);
-            display: none; /* Hidden by default, shown via JS on non-touch devices */
-        }
-
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent-color);
-        }
-
-        .cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 2px solid rgba(59, 130, 246, 0.5);
-        }
-        
-        body:hover .cursor-outline.hover-effect {
-            width: 60px;
-            height: 60px;
-            background-color: rgba(59, 130, 246, 0.1);
-            border-color: rgba(59, 130, 246, 0.8);
-        }
-
-        /* Main Content Container */
-        .bio-container {
-            width: 100%;
-            max-width: 680px;
-            text-align: center;
             padding: 20px;
-            position: relative;
-            z-index: 2;
         }
 
-        .profile-picture {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 4px solid var(--border-color);
+        /* Kontainer Utama */
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px var(--shadow-color);
+            overflow: hidden;
+        }
+
+        header {
+            padding: 30px;
+            background-color: var(--primary-green);
+            color: white;
+            text-align: center;
+        }
+
+        header h1 {
+            font-weight: 600;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        main {
+            padding: 30px;
+        }
+
+        /* Styling Formulir */
+        .form-section, .testimonial-section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: var(--dark-gray);
+            font-weight: 600;
             margin-bottom: 20px;
-            object-fit: cover;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-bottom: 2px solid var(--primary-green);
+            padding-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
         }
 
-        .username {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-gray);
         }
 
-        .user-handle {
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Tombol Interaktif */
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 8px;
             font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
         }
 
-        .links-container {
+        .submit-btn:hover:not(:disabled) {
+            background-color: var(--dark-green);
+            transform: translateY(-2px);
+        }
+        
+        .submit-btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+        
+        #form-status {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: 500;
+            display: none; /* Disembunyikan secara default */
+        }
+        
+        .status-success { color: var(--dark-green); }
+        .status-error { color: #e74c3c; }
+
+        /* Tampilan Testimoni */
+        #testimonial-list {
+            margin-top: 20px;
             display: grid;
             gap: 20px;
         }
-
-        .link-card {
-            background: var(--bg-card);
+        
+        .testimonial-card {
+            background-color: #ffffff;
             border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 18px 25px;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: var(--transition-smooth);
-            will-change: transform, box-shadow;
-            text-decoration: none;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 500;
-            font-size: 1.1rem;
+            border-left: 5px solid var(--primary-green);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            animation: fadeIn 0.5s ease-in-out;
         }
         
-        .link-card:hover {
-            transform: translateY(-8px) scale(1.03);
-            border-color: rgba(59, 130, 246, 0.5);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-            color: #fff;
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 10px;
         }
-
-        .link-card i {
-            font-size: 1.4rem;
-            margin-right: 15px;
-            width: 25px; /* To align text */
-            text-align: center;
-        }
-
-        /* Animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .footer {
-            margin-top: 40px;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-        .footer a {
-            color: var(--accent-color);
-            text-decoration: none;
+        
+        .testimonial-card .author {
             font-weight: 600;
+            color: var(--dark-gray);
+            text-align: right;
+        }
+        
+        /* Animasi */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Loader */
+        .loader {
+            text-align: center;
+            padding: 20px;
+            font-weight: 500;
         }
 
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .cursor { display: none !important; }
-            body { cursor: auto; }
-            .link-card { cursor: pointer; }
-            .username { font-size: 1.8rem; }
-            .profile-picture { width: 100px; height: 100px; }
+        /* Responsif untuk Mobile */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            main, header {
+                padding: 20px;
+            }
+            header h1 {
+                font-size: 1.5rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Interactive Background & Cursor Elements (Desktop Only) -->
-    <div id="interactive-bg"></div>
-    <div class="cursor cursor-dot"></div>
-    <div class="cursor cursor-outline"></div>
 
-    <main class="bio-container">
-        <img src="profil.png">
-        <h1 class="username reveal">Rifqy Maulana</h1>
-        <p class="user-handle reveal">Digital Enthusiast & Developer</p>
+    <div class="container">
+        <header>
+            <h1>Bagikan Pengalaman Anda</h1>
+            <p>Testimoni Anda sangat berarti bagi kami.</p>
+        </header>
+        
+        <main>
+            <section class="form-section">
+                <h2>Tulis Testimoni</h2>
+                <form id="testimonial-form">
+                    <div class="form-group">
+                        <label for="nama">Nama Anda</label>
+                        <input type="text" id="nama" name="nama" placeholder="Contoh: Budi Santoso" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pesan">Pesan/Testimoni</label>
+                        <textarea id="pesan" name="pesan" placeholder="Tuliskan pengalaman Anda di sini..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" id="submit-button">Kirim Testimoni</button>
+                    <p id="form-status"></p>
+                </form>
+            </section>
 
-        <div class="links-container">
-            <!-- WhatsApp -->
-            <a href="https://wa.me/6289621810307" target="_blank" class="link-card reveal" style="transition-delay: 100ms;">
-                <i class="fa-brands fa-whatsapp"></i>
-                <span>0896 2181 0307</span>
-            </a>
-            <!-- Instagram -->
-            <a href="https://instagram.com/rifqymaulanaa15" target="_blank" class="link-card reveal" style="transition-delay: 200ms;">
-                <i class="fa-brands fa-instagram"></i>
-                <span>@rifqymaulanaa15</span>
-            </a>
-            <!-- TikTok -->
-            <a href="https://www.tiktok.com/@rifqymaulanaa15" target="_blank" class="link-card reveal" style="transition-delay: 300ms;">
-                <i class="fa-brands fa-tiktok"></i>
-                <span>@rifqymaulanaa15</span>
-            </a>
-            <!-- GitHub -->
-            <a href="https://github.com/Rifqymaulanaa" target="_blank" class="link-card reveal" style="transition-delay: 400ms;">
-                <i class="fa-brands fa-github"></i>
-                <span>Rifqymaulanaa</span>
-            </a>
-            <!-- LinkedIn (Ganti # dengan URL LinkedIn Anda) -->
-            <a href="#" target="_blank" class="link-card reveal" style="transition-delay: 500ms;">
-                <i class="fa-brands fa-linkedin"></i>
-                <span>LinkedIn Profile</span>
-            </a>
-            <!-- Website Pribadi -->
-            <a href="https://rifqymaulana.com" target="_blank" class="link-card reveal" style="transition-delay: 600ms;">
-                <i class="fa-solid fa-globe"></i>
-                <span>rifqymaulana.com</span>
-            </a>
-        </div>
+            <hr style="border: 0; height: 1px; background: var(--border-color); margin: 40px 0;">
 
-        <footer class="footer reveal" style="transition-delay: 700ms;">
-            <p>&copy; 2025 Rifqy Maulana. Dibuat dengan <i class="fa-solid fa-heart" style="color: #e25555;"></i></p>
-        </footer>
-    </main>
+            <section class="testimonial-section">
+                <h2>Apa Kata Mereka?</h2>
+                <div id="testimonial-list">
+                    <div class="loader">Memuat testimoni...</div>
+                </div>
+            </section>
+        </main>
+    </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        document.addEventListener('DOMContentLoaded', function() {
+            // =========================================================================
+            // PENGATURAN - GANTI DENGAN URL APLIKASI WEB ANDA DARI GOOGLE APPS SCRIPT
+            // =========================================================================
+            const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxjpxqYVP9GPFuuTIAedmYUxgf4WOh6EdncMfJllJduahPbT7zMKm5JNA9-h5LUGMb66g/exec"; 
+            // =========================================================================
 
-        // --- INTERACTIVE BACKGROUND & CURSOR (Desktop Only) ---
-        if (!isTouchDevice) {
-            const cursorDot = document.querySelector('.cursor-dot');
-            const cursorOutline = document.querySelector('.cursor-outline');
+            const form = document.getElementById('testimonial-form');
+            const submitButton = document.getElementById('submit-button');
+            const formStatus = document.getElementById('form-status');
+            const testimonialList = document.getElementById('testimonial-list');
 
-            cursorDot.style.display = 'block';
-            cursorOutline.style.display = 'block';
-
-            window.addEventListener('mousemove', (e) => {
-                const { clientX, clientY } = e;
-                // Update posisi untuk radial gradient background
-                document.documentElement.style.setProperty('--mouse-x', `${clientX}px`);
-                document.documentElement.style.setProperty('--mouse-y', `${clientY}px`);
-                
-                // Update posisi untuk custom cursor
-                cursorDot.style.left = `${clientX}px`;
-                cursorDot.style.top = `${clientY}px`;
-                cursorOutline.animate({ left: `${clientX}px`, top: `${clientY}px` }, { duration: 500, fill: "forwards" });
-            });
-
-            // Tambahkan efek hover pada cursor saat diarahkan ke elemen interaktif
-            document.querySelectorAll('a, button').forEach(el => {
-                el.addEventListener('mouseenter', () => cursorOutline.classList.add('hover-effect'));
-                el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover-effect'));
-            });
-        }
-        
-        // --- SCROLL REVEAL ANIMATION ---
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Tambahkan delay dari style inline agar animasi berurutan
-                    const delay = parseInt(entry.target.style.transitionDelay) || 0;
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                    }, delay);
-                    observer.unobserve(entry.target);
+            /**
+             * Fungsi untuk mengambil dan menampilkan semua testimoni dari Google Sheet
+             */
+            async function fetchTestimonials() {
+                try {
+                    testimonialList.innerHTML = '<div class="loader">Memuat testimoni...</div>';
+                    const response = await fetch(SCRIPT_URL);
+                    if (!response.ok) throw new Error('Gagal mengambil data: ' + response.statusText);
+                    
+                    const data = await response.json();
+                    
+                    testimonialList.innerHTML = ''; // Bersihkan loader
+                    if (data.testimonials.length === 0) {
+                        testimonialList.innerHTML = '<div class="loader">Belum ada testimoni. Jadilah yang pertama!</div>';
+                    } else {
+                        // Tampilkan data dari yang terbaru
+                        data.testimonials.reverse().forEach(item => {
+                            const card = createTestimonialCard(item);
+                            testimonialList.appendChild(card);
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error fetching testimonials:', error);
+                    testimonialList.innerHTML = '<div class="loader" style="color: #e74c3c;">Gagal memuat testimoni. Silakan coba lagi nanti.</div>';
                 }
-            });
-        }, { threshold: 0.1 });
+            }
 
-        revealElements.forEach(el => revealObserver.observe(el));
-    });
+            /**
+             * Fungsi untuk membuat elemen kartu testimoni
+             * @param {object} item - Objek berisi nama dan pesan
+             * @returns {HTMLElement} - Elemen div kartu testimoni
+             */
+            function createTestimonialCard(item) {
+                const card = document.createElement('div');
+                card.className = 'testimonial-card';
+
+                const message = document.createElement('p');
+                message.textContent = `"${item.pesan}"`;
+
+                const author = document.createElement('div');
+                author.className = 'author';
+                author.textContent = `— ${item.nama}`;
+
+                card.appendChild(message);
+                card.appendChild(author);
+                return card;
+            }
+
+            /**
+             * Fungsi untuk menangani pengiriman formulir
+             * @param {Event} e - Event object
+             */
+            async function handleFormSubmit(e) {
+                e.preventDefault(); // Mencegah form dari refresh halaman
+                
+                // UI feedback: Tombol dinonaktifkan dan teks berubah
+                submitButton.disabled = true;
+                submitButton.textContent = 'Mengirim...';
+                formStatus.style.display = 'none';
+
+                const formData = new FormData(form);
+                const data = {
+                    nama: formData.get('nama'),
+                    pesan: formData.get('pesan')
+                };
+
+                try {
+                    const response = await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    if (!response.ok) throw new Error('Gagal mengirim data: ' + response.statusText);
+
+                    const result = await response.json();
+                    
+                    // Tampilkan pesan sukses
+                    showStatusMessage(result.message, 'success');
+                    form.reset();
+                    
+                    // Optimistic UI update: langsung tambahkan kartu baru tanpa menunggu fetch ulang
+                    const newCard = createTestimonialCard(data);
+                    testimonialList.insertBefore(newCard, testimonialList.firstChild);
+                    // Hapus pesan "belum ada testimoni" jika ada
+                    const noTestimonialMessage = testimonialList.querySelector('.loader');
+                    if (noTestimonialMessage && noTestimonialMessage.textContent.includes('Belum ada testimoni')) {
+                       noTestimonialMessage.remove();
+                    }
+
+
+                } catch (error) {
+                    console.error('Error submitting form:', error);
+                    showStatusMessage('Terjadi kesalahan. Coba lagi.', 'error');
+                } finally {
+                    // Kembalikan tombol ke keadaan semula
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Kirim Testimoni';
+                }
+            }
+            
+            /**
+             * Fungsi untuk menampilkan pesan status (sukses/error)
+             * @param {string} message - Pesan yang akan ditampilkan
+             * @param {string} type - 'success' atau 'error'
+             */
+            function showStatusMessage(message, type) {
+                formStatus.textContent = message;
+                formStatus.className = type === 'success' ? 'status-success' : 'status-error';
+                formStatus.style.display = 'block';
+                setTimeout(() => {
+                    formStatus.style.display = 'none';
+                }, 4000); // Pesan akan hilang setelah 4 detik
+            }
+
+            // Event listener untuk form submit
+            form.addEventListener('submit', handleFormSubmit);
+
+            // Muat testimoni saat halaman pertama kali dibuka
+            fetchTestimonials();
+        });
     </script>
 </body>
 </html>
